@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CKCoreDataHelper/CKCoreDataXMLImporter.m"
+            timestampString = "510131470.836424"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-mapAttributes:toEntity:error:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CKCoreDataHelper/CKCoreDataXMLImporter.m"
+            timestampString = "510132691.525476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-mapAttributes:toEntity:error:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CKCoreDataHelperTests/CKCoreDataImporterBase.m"
+            timestampString = "510133292.065813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-assertRelationshipExist"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CKCoreDataImporterBase assertRelationshipExist]"
+                  moduleName = "CKCoreDataHelperTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enix/Source/apple/CKCoreDataHelper/CKCoreDataHelperTests/CKCoreDataImporterBase.m"
+                  timestampString = "510133213.169565"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "2565">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CKCoreDataImporterBase assertRelationshipExist]"
+                  moduleName = "CKCoreDataHelperTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enix/Source/apple/CKCoreDataHelper/CKCoreDataHelperTests/CKCoreDataImporterBase.m"
+                  timestampString = "510133213.169895"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "4049">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CKCoreDataImporterBase assertRelationshipExist]"
+                  moduleName = "CKCoreDataHelperTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enix/Source/apple/CKCoreDataHelper/CKCoreDataHelperTests/CKCoreDataImporterBase.m"
+                  timestampString = "510133213.170173"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "4251">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CKCoreDataImporterBase assertRelationshipExist]"
+                  moduleName = "CKCoreDataHelperTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enix/Source/apple/CKCoreDataHelper/CKCoreDataHelperTests/CKCoreDataImporterBase.m"
+                  timestampString = "510133213.170625"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "4357">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

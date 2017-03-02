@@ -1,0 +1,5 @@
+<Shops>
+    <Shop name="Walmart" address="USA" />
+    <Shop name="Tesco" address="UK" />
+    <Shop name="Jusco" address="Japan" />
+</Shops>

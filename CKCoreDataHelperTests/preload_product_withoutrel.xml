@@ -1,0 +1,5 @@
+<Products>
+    <Product name="Cloth" price="10.0" />
+    <Product name="Computer" price="15.0" />
+    <Product name="Bike" price="19.0" />
+</Products>
