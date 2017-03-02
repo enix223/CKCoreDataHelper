@@ -194,7 +194,7 @@ static NSInteger const kCKErrorFailedInsertErrorCode = -1;
             }
             
             // Attribute style: "T@\"NSString\""
-            int len = strlen(attribute);
+            unsigned long len = strlen(attribute);
             char temp[len - 4];
             memcpy(temp, attribute + 3, len - 4);
             temp[strlen(attribute) - 4] = '\0';
