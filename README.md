@@ -34,6 +34,12 @@ There are two importer you can use to import data into persistent store. One for
 #### XML
 
 ```objc
+// Initialize
+_importer = [[CKCoreDataXMLImporter alloc]
+                 initWithCoordinator:self.manager.coordinator
+                 entitiesUniqueAttributes:@{@"Product": @"name",
+                                            @"Shop": @"name"}];
+
 NSURL *productXML = [bundle URLForResource:@"preload_product" withExtension:@"xml"];
     
 [_importer importDataFrom:shopXML                                         // XML URL Path
@@ -46,6 +52,13 @@ NSURL *productXML = [bundle URLForResource:@"preload_product" withExtension:@"xm
 
 ### JSON
 ```objc
+
+// Initialize
+_importer = [[CKCoreDataJSONImporter alloc]
+                 initWithCoordinator:self.manager.coordinator
+                 entitiesUniqueAttributes:@{@"Product": @"name",
+                                            @"Shop": @"name"}];
+
 NSURL *path = [bundle URLForResource:@"preload_product_withoutrel" withExtension:@"json"];
 
 [_importer importDataFrom:path
@@ -56,61 +69,62 @@ NSURL *path = [bundle URLForResource:@"preload_product_withoutrel" withExtension
                }];
 ```
 
-## Entity操作
+## Entity CURD
 
-### 获取记录
+### Retrieve record
 
-    // 创建一个查询request，并指定查询对象
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Entity"];
+```objc
+NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Entity"];
+NSArray *results = [_manager.context executeFetchRequest:fetchRequest error:nil];
+```
 
-    // 通过context，执行查询，结果返回一个包含符合查询条件的Entity对象的NSArray
-    NSArray *results = [context executeFetchRequest:fetchRequest error:nil];
+### Sorting
 
-### 排序
+```objc
+NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"attribute Name" ascending:YES];
+[fetchRequest setSortDescriptors:@[sort]];
+```
 
-    // 指定排序的attribute name，并指定是否升序
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"attribute Name" ascending:YES];
+### Filter (Using NSPredicate). [NSPredicate manual](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789)
 
-    // 向查询请求添加排序设置
-    [fetchRequest setSortDescriptors:@[sort]];
-
-### 筛选 (使用NSPredicate). [NSPredicate 使用说明](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789)
-
-    // 创建一个predicate，设置筛选条件，具体语法请查看apple的Predicate Programming Guide
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", @"Enix"];
-
-    // 把predicate添加到查询请求中
-    [fetchRequest setPredicate:predicate];
-
+```objc
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", @"Enix"];
+[fetchRequest setPredicate:predicate];
+```
 
 ### 筛选 (Fetch Request Template)
 
-1. 选择 Model.xcdatamodeld
+1. Select Model.xcdatamodeld
 2. Editor > Add Fetch Request
-3. 设置fetch request的名字，如 fetchByName
-4. 添加筛选条件
-5. 在代码中使用fetch request template
+3. Set a name for your fetch request，eg, fetchByName
+4. Add filtering expression
+5. Get your fetch request template in code:
 
-        // 使用NSManagedObjectModel对象，并通过刚才新建的fetch request名，建立查询请求
-        NSFetchRequest *req = [[coreDataHelper model]
-                                fetchRequestTemplateForName:@"your fetch request name"];
+```objc
+NSFetchRequest *req = [[_manager model]
+                       fetchRequestTemplateForName:@"your fetch request name"];
+```
 
-### 创建Entity instance
+### Create Entity instance
 
-    Entity *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Entity"
-                                                    inManagedObjectContext:context];
+```objc
+Entity *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Entity"
+                                                inManagedObjectContext:context];
+```
 
+### Delete record
 
-### 删除
+```objc
+// Get the record which is pending to remove
+NSArray *results = [[coreDataHelper context] executeFetchRequest:fetchRequest error:nil];
 
-    // 获取需删除的对象
-    NSArray *results = [[coreDataHelper context] executeFetchRequest:fetchRequest error:nil];
-    
-    // 通过context删除该对象
-    [[coreDataHelper context] deleteObject:[results firstObject]];
+// Delete the record
+[[_manager context] deleteObject:[results firstObject]];
+```
 
-### 保存
+### Save
 
-    // 除了查询，所有对Managed Object的修改，都需要显式调用save方法，改变才会真正保存到storage
-    NSError *error = nil;
-    [context save:&error];
+```objc
+NSError *error = nil;
+[context save:&error];
+```
