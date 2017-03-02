@@ -92,7 +92,7 @@ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", @"
 [fetchRequest setPredicate:predicate];
 ```
 
-### 筛选 (Fetch Request Template)
+### Filter (Fetch Request Template)
 
 1. Select Model.xcdatamodeld
 2. Editor > Add Fetch Request
