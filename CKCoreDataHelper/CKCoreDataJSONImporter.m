@@ -97,7 +97,6 @@ static NSInteger const kCKErrorFailedToReadDataErrorCode = -1;
                                             withUniqueAttributeValue:originAttrValue
                                                                error:&localError];
              if (!relObj) {
-                 DDLogWarn(@"Failed to map attribute %@", propertyName);
                  if (error) *error = localError;
              } else {
                  [dict setObject:relObj forKey:propertyName];

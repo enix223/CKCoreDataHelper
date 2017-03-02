@@ -43,9 +43,6 @@
 - (void)    parser:(NSXMLParser *)parser
 parseErrorOccurred:(NSError *)parseError
 {
-    DDLogError(@"Error occurred when parsing XML. Reason: %@",
-               [parseError localizedDescription]);
-    
     if (parseError.code != NSXMLParserDelegateAbortedParseError) {
         if (_completion) {
             _completion(NO, parseError);
@@ -163,7 +160,6 @@ didStartElement:(NSString *)elementName
                                                 withUniqueAttributeValue:originAttrValue
                                                                    error:&localError];
                  if (!relObj) {
-                     DDLogWarn(@"Failed to map attribute %@", propertyName);
                      if (error) *error = localError;
                  } else {
                      // Set the inverse relationship if exist

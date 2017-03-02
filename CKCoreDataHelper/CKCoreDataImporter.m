@@ -138,7 +138,6 @@ static NSInteger const kCKErrorFailedInsertErrorCode = -1;
 {
     if ([_context hasChanges]) {
         if (![_context save:error]) {
-            DDLogError(@"Failed to save changes to context. Reason: %@", [*error description]);
             return NO;
         }
     }

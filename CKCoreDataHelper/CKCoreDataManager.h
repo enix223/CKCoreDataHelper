@@ -70,14 +70,14 @@ typedef void (^CKCoreDataMigrationCompletion)(BOOL success, NSError * _Nullable 
  */
 - (BOOL)setupCoreDataWithStoreFileName:(NSString *)fileName
                   lightWeightMigration:(BOOL)lightWeightMigration
-                                 error:(NSError ** _Nullable)error;
+                                 error:(NSError * _Nullable *)error;
 
 /**
  * Save the model update in core data context
  * @param If error occcurred, error return contains the problem for the failure.
  * @return: YES if setup success, NO if not. If context no changed, always return YES.
  */
-- (BOOL)saveContextWithError:(NSError ** _Nullable)error;
+- (BOOL)saveContextWithError:(NSError * _Nullable *)error;
 
 /**
  * Determine whether migration is needed or not
@@ -104,7 +104,7 @@ typedef void (^CKCoreDataMigrationCompletion)(BOOL success, NSError * _Nullable 
  * @param error: The core data error
  * @return The description for the error
  */
-- (NSString *)descriptionForError:(NSError *)error;
+- (nullable NSString *)descriptionForError:(NSError *)error;
 
 /**
  * Destroy the store, and remove the related files
@@ -113,7 +113,7 @@ typedef void (^CKCoreDataMigrationCompletion)(BOOL success, NSError * _Nullable 
  * @return YES if success, NO if not.
  */
 - (BOOL)destroyStoreForStoreFile:(NSString *)storeFile
-                       withError:(NSError ** _Nullable)error;
+                       withError:(NSError * _Nullable *)error;
 
 @end
 

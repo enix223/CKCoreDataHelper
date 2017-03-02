@@ -47,9 +47,11 @@ static NSInteger const kCKErrorNullFetchController = -1;
     } else {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey:
                                    NSLocalizedString(@"Fetch result controller is null", @"")};
-        *error = [NSError errorWithDomain:kCKErrorDomain
-                                     code:kCKErrorNullFetchController
-                                 userInfo:userInfo];
+        if (error) {
+            *error = [NSError errorWithDomain:kCKErrorDomain
+                                         code:kCKErrorNullFetchController
+                                     userInfo:userInfo];
+        }
         return NO;
     }
 }

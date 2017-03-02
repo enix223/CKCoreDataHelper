@@ -88,8 +88,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
                                               options:options
                                                 error:&localErr];
     if (!_store) {
-        DDLogError(@"Failed to initialized store, Reason: %@",
-                   [localErr localizedDescription]);
         if (error) *error = localErr;
         return NO;
     }
@@ -99,7 +97,7 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
 
 - (BOOL)setupCoreDataWithStoreFileName:(NSString *)fileName
                   lightWeightMigration:(BOOL)lightWeightMigration
-                                 error:(NSError ** _Nullable)error
+                                 error:(NSError **)error
 {
     _storeFileName = fileName;
     return [self loadStoreWithLightWeightMigration:lightWeightMigration
@@ -110,7 +108,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:storeURL.path]) {
-        DDLogError(@"Store file %@ not exist.", storeURL.path);
         return NO;
     }
     
@@ -118,8 +115,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     if (![fileManager moveItemAtURL:storeURL
                               toURL:[self storeURL]
                               error:&error]) {
-        DDLogError(@"Failed to copy the store. Reason: %@",
-                   error.localizedDescription);
         return NO;
     }
     
@@ -151,7 +146,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
                                             attributes:nil
                                                  error:nil];
         if (flag) {
-            DDLogError(@"Fatal: Failed to create store dir for core data.");
             return nil;
         }
     }
@@ -193,7 +187,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:storeURL.path]) {
-        DDLogWarn(@"Store file not created yet");
         return NO;
     }
     
@@ -230,8 +223,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
                                     URL:sourceStoreURL
                                     error:&error];
         if (error) {
-            DDLogError(@"Failed to retrieve source meta data, Reason: %@",
-                       error.localizedDescription);
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(NO, error);
             });
@@ -271,10 +262,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
                                 destinationOptions:nil
                                              error:&error];
             if (!success) {
-                DDLogError(@"Fatal: Failed to migrate from source store (%@) to destination store (%@), Reason: %@",
-                           sourceStoreURL.path,
-                           destStoreURL.path,
-                           error.localizedDescription);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(NO, error);
                 });
@@ -284,24 +271,17 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
             if (![self replaceSourceStore:sourceStoreURL
                      withDestinationStore:destStoreURL
                                     error:&error]) {
-                DDLogError(@"Failed to replace the source store (%@) with destination store (%@), Reason: %@",
-                           sourceStoreURL.path,
-                           destStoreURL.path,
-                           error.localizedDescription);
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion(NO, error);
                 });
             }
             
-            DDLogInfo(@"Core data store migration success");
             [manager removeObserver:self forKeyPath:@"migrationProgress"];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(YES, nil);
             });
         } else {
-            DDLogError(@"Failed to get Mapping model.");
             error = [NSError
                      errorWithDomain:kCKErrorDomain
                                 code:kCKErrorGetMappingModelErrorCode
@@ -325,7 +305,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
                               metadataForPersistentStoreOfType:NSSQLiteStoreType
                               URL:storeURL error:error];
     if (error) {
-        DDLogWarn(@"Failed to get meta data for store %@", storeURL.path);
         return NO;
     }
     
@@ -351,9 +330,6 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     if ([_context hasChanges]) {
         NSError *localError = nil;
         if (![_context save:&localError]) {
-            DDLogError(@"Failed to save core data context, Error: %@, Reason: %@",
-                       [self descriptionForError:localError],
-                       [localError localizedDescription]);
             if (error) *error = localError;
             return NO;
         }
@@ -425,7 +401,7 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
 }
 
 - (BOOL)destroyStoreForStoreFile:(NSString *)storeFile
-                       withError:(NSError ** _Nullable)error
+                       withError:(NSError **)error
 {
     if ([_coordinator.persistentStores count] > 0) {
         if (![_coordinator removePersistentStore:_store error:error]) {
@@ -434,9 +410,11 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     }
     
     NSURL *storePath = [[self applicationStoreDir] URLByAppendingPathComponent:storeFile];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager removeItemAtPath:storePath.path error:error]) {
-        return YES;
+    if (storePath) {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager removeItemAtPath:[storePath path] error:error]) {
+            return YES;
+        }
     }
     
     return NO;

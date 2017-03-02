@@ -68,8 +68,6 @@
 		0E1BD9261E6507B8004D56F7 /* CKCoreDataJSONImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCoreDataJSONImporter.h; sourceTree = "<group>"; };
 		0E1BD9271E6507B8004D56F7 /* CKCoreDataJSONImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCoreDataJSONImporter.m; sourceTree = "<group>"; };
 		0E1BD92A1E651215004D56F7 /* CKCoreDataImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCoreDataImporter.m; sourceTree = "<group>"; };
-		0E1BD92C1E6515AF004D56F7 /* CKCoreDataConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKCoreDataConstant.h; sourceTree = "<group>"; };
-		0E1BD92D1E6515C9004D56F7 /* CKCoreDataHelper-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CKCoreDataHelper-PrefixHeader.pch"; sourceTree = "<group>"; };
 		0E4C53031E665B2F00729A91 /* CKCoreDataXMLImporterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCoreDataXMLImporterTests.m; sourceTree = "<group>"; };
 		0E4C53061E665B5400729A91 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0E4C530A1E665B9A00729A91 /* preload_product.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = preload_product.xml; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				0E1BD8CE1E65006D004D56F7 /* CKCoreDataHelper.h */,
 				0EDF178D1E67B93E00785659 /* NSDate+ConventKit.h */,
 				0EDF178E1E67B93E00785659 /* NSDate+ConventKit.m */,
-				0E1BD92C1E6515AF004D56F7 /* CKCoreDataConstant.h */,
 				0E1BD91E1E6506ED004D56F7 /* CKCoreDataImporter.h */,
 				0E1BD92A1E651215004D56F7 /* CKCoreDataImporter.m */,
 				0E1BD9221E6507AB004D56F7 /* CKCoreDataXMLImporter.h */,
@@ -149,7 +146,6 @@
 				0E1BD9171E6501D0004D56F7 /* CKCoreDataManager.m */,
 				0E1BD9181E6501D0004D56F7 /* CKCoreDataViewController.h */,
 				0E1BD9191E6501D0004D56F7 /* CKCoreDataViewController.m */,
-				0E1BD92D1E6515C9004D56F7 /* CKCoreDataHelper-PrefixHeader.pch */,
 				0E1BD8D01E65006D004D56F7 /* Info.plist */,
 			);
 			path = CKCoreDataHelper;
@@ -453,7 +449,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = CKCoreDataHelper/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -471,7 +467,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = CKCoreDataHelper/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

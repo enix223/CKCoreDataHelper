@@ -82,7 +82,7 @@ typedef void (^CKCoreDataImportCompletion)(BOOL success, NSError * _Nullable err
 - (NSManagedObject *)existingObjectInContext:(NSManagedObjectContext *)context
                                    forEntity:(NSString *)entity
                     withUniqueAttributeValue:(NSString *)uniqueAttrValue
-                                       error:(NSError ** _Nullable)error;
+                                       error:(NSError * _Nullable *)error;
 /**
  * Insert a managed object into given context. If record exist, return it directly.
  * @param entity:           The entity name
@@ -96,17 +96,25 @@ typedef void (^CKCoreDataImportCompletion)(BOOL success, NSError * _Nullable err
                       uniqueAttributeValue:(NSString *)uniqueAttrValue
                            attributeValues:(NSDictionary *)attributeValues
                                  inContext:(NSManagedObjectContext *)context
-                                     error:(NSError ** _Nullable)error;
+                                     error:(NSError * _Nullable *)error;
 
 /**
  * Save changes to given context
  * @param error:   An error pointer for the context saving error.
  * @return:        YES if save success, NO if not.
  */
-- (BOOL)saveContextWithError:(NSError ** _Nullable)error;
+- (BOOL)saveContextWithError:(NSError * _Nullable*)error;
 
-- (NSString *)getPropertyTypeForEntity:(NSManagedObject *)entity
-                      withPropertyName:(NSString *)propertyName;
+/**
+ * Get property Type name for entity with given property name. 
+ * eg `name` is a property of Product entity, with type NSString. 
+ * So calling -getPropertyTypeForEntity:withPropertyName will return `NSString` for this case.
+ * @param entity: The name of the entity
+ * @param propertyName: The name of the property
+ * @param The property type name
+ */
+- (nullable NSString *)getPropertyTypeForEntity:(NSManagedObject *)entity
+                               withPropertyName:(NSString *)propertyName;
 
 @end
 
