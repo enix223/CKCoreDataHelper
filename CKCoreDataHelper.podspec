@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CKCoreDataHelper"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "An implementation of CoreData Helper. Including data import from XML/JSON"
 
   s.description  = <<-DESC
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author       = { "Enix Yu" => "enix223@163.com" }
 
   s.platform     = :ios
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "8.0"
 
   s.requires_arc   = true
   s.source       = { :git => "https://github.com/enix223/CKCoreDataHelper.git", :tag => "#{s.version}" }

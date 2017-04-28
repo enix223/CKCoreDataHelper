@@ -6,7 +6,7 @@
 //  Copyright © 2017 RobotBros. All rights reserved.
 //
 
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 #import <CoreData/CoreData.h>
 
 #import "CKCoreDataXMLImporter.h"
