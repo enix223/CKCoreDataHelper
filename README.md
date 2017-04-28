@@ -34,6 +34,12 @@ There are two importer you can use to import data into persistent store. One for
 #### XML
 
 ```objc
+// Initialize
+_importer = [[CKCoreDataXMLImporter alloc]
+                 initWithCoordinator:self.manager.coordinator
+                 entitiesUniqueAttributes:@{@"Product": @"name",
+                                            @"Shop": @"name"}];
+
 NSURL *productXML = [bundle URLForResource:@"preload_product" withExtension:@"xml"];
     
 [_importer importDataFrom:shopXML                                         // XML URL Path
@@ -46,6 +52,13 @@ NSURL *productXML = [bundle URLForResource:@"preload_product" withExtension:@"xm
 
 ### JSON
 ```objc
+
+// Initialize
+_importer = [[CKCoreDataJSONImporter alloc]
+                 initWithCoordinator:self.manager.coordinator
+                 entitiesUniqueAttributes:@{@"Product": @"name",
+                                            @"Shop": @"name"}];
+
 NSURL *path = [bundle URLForResource:@"preload_product_withoutrel" withExtension:@"json"];
 
 [_importer importDataFrom:path
@@ -54,4 +67,64 @@ NSURL *path = [bundle URLForResource:@"preload_product_withoutrel" withExtension
                    XCTAssertTrue(success);
                    XCTAssertNil(error);
                }];
+```
+
+## Entity CURD
+
+### Retrieve record
+
+```objc
+NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Entity"];
+NSArray *results = [_manager.context executeFetchRequest:fetchRequest error:nil];
+```
+
+### Sorting
+
+```objc
+NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"attribute Name" ascending:YES];
+[fetchRequest setSortDescriptors:@[sort]];
+```
+
+### Filter (Using NSPredicate). [NSPredicate manual](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789)
+
+```objc
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", @"Enix"];
+[fetchRequest setPredicate:predicate];
+```
+
+### Filter (Fetch Request Template)
+
+1. Select Model.xcdatamodeld
+2. Editor > Add Fetch Request
+3. Set a name for your fetch request，eg, fetchByName
+4. Add filtering expression
+5. Get your fetch request template in code:
+
+```objc
+NSFetchRequest *req = [[_manager model]
+                       fetchRequestTemplateForName:@"your fetch request name"];
+```
+
+### Create Entity instance
+
+```objc
+Entity *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"Entity"
+                                                inManagedObjectContext:context];
+```
+
+### Delete record
+
+```objc
+// Get the record which is pending to remove
+NSArray *results = [[coreDataHelper context] executeFetchRequest:fetchRequest error:nil];
+
+// Delete the record
+[[_manager context] deleteObject:[results firstObject]];
+```
+
+### Save
+
+```objc
+NSError *error = nil;
+[context save:&error];
 ```
