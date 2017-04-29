@@ -141,13 +141,10 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     
     // Dir exist or not
     if (![fileManager fileExistsAtPath:storeDir]) {
-        BOOL flag = [fileManager createDirectoryAtPath:storeDir
-                           withIntermediateDirectories:YES
-                                            attributes:nil
-                                                 error:nil];
-        if (flag) {
-            return nil;
-        }
+        [fileManager createDirectoryAtPath:storeDir
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:nil];
     }
     
     return [NSURL fileURLWithPath:storeDir];
