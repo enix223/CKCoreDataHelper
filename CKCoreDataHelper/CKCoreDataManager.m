@@ -304,7 +304,14 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     }
     
     BOOL imported = [[metaData objectForKey:@"DefaultDataImported"] boolValue];
-    return imported;
+    if (imported) {
+        return YES;
+    } else {
+        *error = [NSError errorWithDomain:kCKErrorDomain
+                                     code:1
+                                 userInfo:@{NSLocalizedDescriptionKey: @"Default data not imported"}];
+        return NO;
+    }
 }
 
 - (void)setDefaultDataAsImportedForStore:(NSPersistentStore *)store
@@ -350,46 +357,45 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     switch (error.code) {
         case 1560:
             return @"NSValidationMultipleErrorsError: Invalid mulitple errors";
-            break;
         case 1570:
             return @"NSValidationMissingMandatoryPropertyError: Missing value for mandatory property";
-            break;
+            
         case 1580:
             return @"NSValidationRelationshipLacksMinimumCountError: Relationship lack of minimum count";
-            break;
+            
         case 1590:
             return @"NSValidationRelationshipExceedsMaximumCountError: Relationship exceed max count";
-            break;
+            
         case 1600:
             return @"NSValidationRelationshipDeniedDeleteError: Denied to delete due to relationship restriction";
-            break;
+            
         case 1610:
             return @"NSValidationNumberTooLargeError: Validation error, number too large";
-            break;
+            
         case 1620:
             return @"NSValidationNumberTooSmallError: Validation error, number too small";
-            break;
+            
         case 1630:
             return @"NSValidationDateTooLateError: Validation error, date too late";
-            break;
+            
         case 1640:
             return @"NSValidationDateTooSoonError: Validation error, date too soon";
-            break;
+            
         case 1650:
             return @"NSValidationInvalidDateError: Invalid date";
-            break;
+            
         case 1660:
             return @"NSValidationStringTooLongError: Validation error, string too long";
-            break;
+            
         case 1670:
             return @"NSValidationStringTooShortError: Validation error, string too short";
-            break;
+            
         case 1680:
             return @"NSValidationStringPatternMatchingError: Validation error, string pattern not match";
-            break;
+            
         default:
             return nil;
-            break;
+            
     }
 }
 
