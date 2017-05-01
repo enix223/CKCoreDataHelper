@@ -81,14 +81,12 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
         options = @{NSSQLitePragmasOption: @{@"journal_mode": @"DELETE"}};
     }
     
-    NSError *localErr = nil;
     _store = [_coordinator addPersistentStoreWithType:NSSQLiteStoreType
                                         configuration:nil
                                                   URL:[self storeURL]
                                               options:options
-                                                error:&localErr];
-    if (!_store) {
-        if (error) *error = localErr;
+                                                error:error];
+    if (*error != nil) {
         return NO;
     }
     
@@ -301,7 +299,7 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     NSDictionary *metaData = [NSPersistentStoreCoordinator
                               metadataForPersistentStoreOfType:NSSQLiteStoreType
                               URL:storeURL error:error];
-    if (error) {
+    if (*error != nil) {
         return NO;
     }
     
@@ -325,9 +323,7 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
 - (BOOL)saveContextWithError:(NSError **)error
 {
     if ([_context hasChanges]) {
-        NSError *localError = nil;
-        if (![_context save:&localError]) {
-            if (error) *error = localError;
+        if (![_context save:error]) {
             return NO;
         }
     }
