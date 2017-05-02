@@ -83,6 +83,7 @@
 		0E4C531A1E665D0D00729A91 /* preload_shop.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = preload_shop.xml; sourceTree = "<group>"; };
 		0E4C531C1E665D1500729A91 /* preload_shop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = preload_shop.json; sourceTree = "<group>"; };
 		0E4C531E1E665E2700729A91 /* CKCoreDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCoreDataManagerTests.m; sourceTree = "<group>"; };
+		0EDE2E971EB82E7D00663E47 /* CKCoreDataHelper.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CKCoreDataHelper.podspec; sourceTree = "<group>"; };
 		0EDF17891E67A11000785659 /* Model v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.xcdatamodel"; sourceTree = "<group>"; };
 		0EDF178C1E67B87200785659 /* Model v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v3.xcdatamodel"; sourceTree = "<group>"; };
 		0EDF178D1E67B93E00785659 /* NSDate+ConventKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ConventKit.h"; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		0E1BD8C11E65006D004D56F7 = {
 			isa = PBXGroup;
 			children = (
+				0EDE2E971EB82E7D00663E47 /* CKCoreDataHelper.podspec */,
 				0E1BD8CD1E65006D004D56F7 /* CKCoreDataHelper */,
 				0E1BD8D91E65006D004D56F7 /* CKCoreDataHelperTests */,
 				0E1BD8CC1E65006D004D56F7 /* Products */,

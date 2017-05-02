@@ -321,6 +321,7 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     [meta setObject:@YES forKey:@"DefaultDataImported"];
     [_context.persistentStoreCoordinator setMetadata:meta
                                   forPersistentStore:store];
+    [_context save:nil];
 }
 
 //-----------------------------------------------------------------

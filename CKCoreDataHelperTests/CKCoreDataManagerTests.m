@@ -71,4 +71,24 @@ static NSString * const kStoreFileName = @"test.sqlite";
     XCTAssertFalse(flag);
 }
 
+- (void)testDefaultDataImportedFlag
+{
+    BOOL flag = [_manager isDefaultDataImportedForStoreWithURL:_manager.storeURL
+                                                         error:nil];
+    XCTAssertFalse(flag);
+}
+
+- (void)testSettingDefaultDataImported
+{
+    BOOL flag = [_manager isDefaultDataImportedForStoreWithURL:_manager.storeURL
+                                                         error:nil];
+    XCTAssertFalse(flag);
+    
+    [_manager setDefaultDataAsImportedForStore:_manager.store];
+    
+    BOOL flag = [_manager isDefaultDataImportedForStoreWithURL:_manager.storeURL
+                                                         error:nil];
+    XCTAssertTrue(flag);
+}
+
 @end
