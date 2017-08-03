@@ -314,11 +314,11 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
     }
 }
 
-- (void)setDefaultDataAsImportedForStore:(NSPersistentStore *)store
+- (void)setDefaultDataAsImported:(BOOL)imported forStore:(NSPersistentStore *)store
 {
     NSMutableDictionary *meta = [NSMutableDictionary
                                  dictionaryWithDictionary:[[store metadata] copy]];
-    [meta setObject:@YES forKey:@"DefaultDataImported"];
+    [meta setObject:imported forKey:@"DefaultDataImported"];
     [_context.persistentStoreCoordinator setMetadata:meta
                                   forPersistentStore:store];
     [_context save:nil];

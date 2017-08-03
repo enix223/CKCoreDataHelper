@@ -96,10 +96,12 @@ typedef void (^CKCoreDataMigrationCompletion)(BOOL success, NSError * _Nullable 
                                        error:(NSError **)error;
 
 /**
- * Set the default data as imported for given store
+ * Set the flag for default data as imported for given store
+ *
+ * @param imported: YES - imported; NO - Not import yet
  * @param store:    The store needed to be set default data imported
  */
-- (void)setDefaultDataAsImportedForStore:(NSPersistentStore *)store;
+- (void)setDefaultDataAsImported:(BOOL)imported forStore:(NSPersistentStore *)store;
 
 /**
  * Start to migrate store to new Managed object model.
