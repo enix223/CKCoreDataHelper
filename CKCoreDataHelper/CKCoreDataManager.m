@@ -318,7 +318,7 @@ static NSInteger const kCKErrorGetMappingModelErrorCode = -1;
 {
     NSMutableDictionary *meta = [NSMutableDictionary
                                  dictionaryWithDictionary:[[store metadata] copy]];
-    [meta setObject:imported forKey:@"DefaultDataImported"];
+    [meta setObject:@(imported) forKey:@"DefaultDataImported"];
     [_context.persistentStoreCoordinator setMetadata:meta
                                   forPersistentStore:store];
     [_context save:nil];
