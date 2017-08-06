@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CKCoreDataHelper"
-  s.version      = "0.0.10"
+  s.version      = "0.0.11"
   s.summary      = "An implementation of CoreData Helper. Including data import from XML/JSON"
 
   s.description  = <<-DESC
